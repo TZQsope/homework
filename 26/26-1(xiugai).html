@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>26-1</title>
+   <script>
+   function getSuffix(){
+	   var upFileName = document.getElementById("field1").value;
+	   var index1=upFileName.lastIndexOf(".");
+	   var index2=upFileName.length;
+	   var suffix=upFileName.substring(index1+1,index2);//后缀名
+	
+	   
+	   document.getElementById("field2").value=suffix;
+	}
+
+     
+   
+   </script>
+</head>
+<body>
+Field1: <input type="text" id="field1" ><br>
+Field2: <input type="text" id="field2"><br><br>
+
+<button onclick="getSuffix()">获取后缀名</button>
+</body>
+</html>

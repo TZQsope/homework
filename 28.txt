@@ -1,0 +1,10 @@
+ var fn;
+   console.log(fn);
+   fn = function(){}
+     
+   
+   function fn(){
+    console.log('1');
+}
+
+fn(); // "1"
