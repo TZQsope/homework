@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-compatible" content="ie-edge">
+    <title>
+        36
+    </title>
+    <script>
+			//页面加载完运行
+			window.onload = function() {
+				//设置画布为2d
+				var ctx = document.getElementById("canvas").getContext("2d");
+				//调用方法
+				dClock();
+ 
+				function dClock() {
+					//清除画布（防止覆盖）  
+					ctx.clearRect(0, 0, 600, 600);
+					
+					//外表盘开始路径
+					ctx.beginPath();
+					ctx.strokeStyle  = "#0000CC";
+					//线条宽度
+					ctx.lineWidth = 15;
+					//开始画圆，x坐标，y坐标，半径，开始角，结束角度
+					ctx.arc(300, 300, 200, 0, 360);
+					//绘制
+					ctx.stroke();
+					//将开始点和结束点相连
+					ctx.closePath();
+ 
+					//内圈圈
+					ctx.beginPath();
+					ctx.strokeStyle  = "#FF0000";
+					//开始画圆，x坐标，y坐标，半径，开始角，结束角度
+					ctx.arc(300, 300, 8, 0, 360);
+					//绘制
+					ctx.stroke();
+ 
+					//绘制刻度(时刻度)  
+					//将表盘分成12格
+					for(var i = 0; i < 12; i++) {
+						//开始路径
+						ctx.beginPath();
+						ctx.lineWidth = 8;
+						ctx.strokeStyle  = "#000000";
+						//保存画笔设置
+						ctx.save();
+						//转换画布的用户坐标系统
+						ctx.translate(300, 300);
+						//设置旋转角度
+						ctx.rotate(i * 30 * Math.PI / 180);
+						//画笔移至到指定位置
+						ctx.moveTo(0, 155);
+						//画笔结束位置
+						ctx.lineTo(0, 185);
+						//绘制
+						ctx.stroke();
+						//将绘图状态置为保存值
+						ctx.restore();
+						//将开始位置和结束位置相连
+						ctx.closePath();
+					}
+ 
+					//绘制刻度(分刻度)  （方法同时刻度）
+					for(var i = 0; i < 60; i++) {
+						ctx.beginPath();
+						ctx.strokeStyle  = "#000000";
+						ctx.save();
+						ctx.translate(300, 300);
+						ctx.rotate(i * 6 * Math.PI / 180);
+						ctx.moveTo(0, 175);
+						ctx.lineTo(0, 185);
+						ctx.stroke();
+						ctx.restore();
+						ctx.closePath();
+					}
+					
+					//获取系统时间  
+					var nowTime = new Date();
+					//获取当前小时
+					var hours = nowTime.getHours();
+					//获取当前分钟
+					var minutes = nowTime.getMinutes();
+					//获取秒
+					var seconds = nowTime.getSeconds();
+					//将24小时转为12小时
+					hours = hours > 12 ? hours - 12 : hours;
+					hours = hours + minutes / 60;
+ 
+					
+					/*绘制时针*/
+					ctx.beginPath();
+					ctx.strokeStyle  = "#000000";
+					//画笔宽度
+					ctx.lineWidth = 15;
+					//保存画笔设置
+					ctx.save();
+					//转换画布的用户坐标系统
+					ctx.translate(300, 300);
+					//将当前时间嫁接到画笔上
+					ctx.rotate(hours * 30 * Math.PI / 180);
+					//画笔开始位置
+					ctx.moveTo(0, 10);
+					//画笔结束位置
+					ctx.lineTo(0, -110);
+					//绘画
+					ctx.stroke();
+					//将绘图状态置为保存值
+					ctx.restore();
+					//将开始位置和结束位置相连
+					ctx.closePath();
+ 
+					/*绘制分针*/
+					ctx.beginPath();
+					ctx.strokeStyle  = "#000000";
+					ctx.lineWidth = 10;
+					ctx.save();
+					ctx.translate(300, 300);
+					ctx.rotate(minutes * 6 * Math.PI / 180);
+					ctx.moveTo(0, 10);
+					ctx.lineTo(0, -153);
+					ctx.stroke();
+					ctx.restore();
+					ctx.closePath();
+ 
+					/*绘制秒针*/
+					ctx.beginPath();
+					ctx.lineWidth = 5;
+					ctx.strokeStyle  = "#FF0000";
+					ctx.save();
+					ctx.translate(300, 300);
+					ctx.rotate(seconds * 6 * Math.PI / 180);
+					ctx.moveTo(0, 10);
+					ctx.lineTo(0, -170);
+					ctx.stroke();
+					ctx.restore();
+					ctx.closePath();
+					
+				}
+				//设置成1秒中刷新一次
+				setInterval(dClock, 1000);
+			}
+		</script>
+
+</head>
+
+<body>
+<canvas id="canvas" height="600px" width="600px"></canvas>
+</body>
+</html>

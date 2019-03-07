@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+#ul-l{
+list-style: none;
+}
+.ul-li{
+float:left;
+border: 1px solid yellow;
+border-radius: 10%;
+}
+</style>
+<script type="text/javascript" src="../jzsh/js/jquery-3.1.1.min.js" ></script>
+<script>
+$(document).ready(function() {
+var colors=['#ffffff','red','#24C7FF','#23C7FF','#20DBFF','red'];
+var lis=$("li");
+$.each(lis,function(index,val){
+lis.eq(index).css('background-color',colors[index])
+});
+})
+</script>
+</head>
+<body>
+<ul id="ul-l">
+<li class="ul-li">1111</li>
+<li class="ul-li">2222</li>
+<li class="ul-li">3333</li>
+<li class="ul-li">4444</li>
+</ul>
+ 
+</body>
+</html>

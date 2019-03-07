@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-compatible" content="ie-edge">
+    <title>
+        flex圣杯布局
+    </title>
+    <style>
+    .container{
+        border: 3px solid black;
+        height: 400px;
+        width: 1100px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-content: space-between;
+    }
+    .item{
+        height:100px;
+        line-height: 100px;
+        text-align: center;
+    }
+    .item:nth-child(1){
+        background: lightgray;
+        height:100px;
+        width:1100px;
+    }
+    .item:nth-child(2){
+        background: lightblue;
+        height: 100px;
+        width: 200px;
+    }
+    .item:nth-child(3){
+        background: blue;
+        width: 600px;
+    }
+    .item:nth-child(4){
+        background: lightblue;
+        width:200px;
+    }
+    .item:nth-child(5){
+        background: lightgray;
+        height:100px;
+        width:1100px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item">头部</div>
+        <div class="item">侧边栏1固定宽度</div>
+        <div class="item">主内容栏自适应宽度</div>
+        <div class="item">侧边栏2固定宽度</div>
+        <div class="item">底部</div>
+    </div>
+    
+</body>
+</html>
