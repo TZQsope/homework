@@ -4,127 +4,131 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bootstrap 实例 - 默认的导航栏</title>
-    <style>
-        body{
-            font-size: 15px;
-            color: gray;
-            line-height: 1.5;
-            margin: 0;
-        }
-        .navbar-default{
-            background-color: lightgray;
-            border-color: lightslategrey;
-
-        }
-        @media only screen and (max-width: 500px) 
-        {
-            [class*="col-"] {
-                width: 100%;
-            }
-        }
-        .navbar{
-            border-radius: 5px;
-            position:relative;
-            min-height: 50px;
-            margin-bottom: 20px;
-            border: 1px solid transparent;
-        }
-        .container{
-            padding-left:15px;
-            padding-right: 15px;
-            box-sizing: border-box;
-        }
-        .navbar-header{
-            float: left;
-            margin-left: 0px;
-            margin-right: 0px;
-        }
-        .navbar-brand{
-            color: black;
-            float: left;
-            height: 50px;
-            padding: 15px 15px;
-            font-size: 15px;
-            line-height: 20px;
-        }
-        a{
-            text-decoration: none;
-            background-color: transparent;
-        }
-        .nav{
-            padding-left: 15px;
-            margin-bottom: 0px;
-            list-style: none;
-        }
-        
-        .navbar-nav{
-            float: left;
-            margin: 0;
-        }
-        li{
-            position: relative;
-            display: block;
-        }
-        .nav li a{
-
-            padding-top: 15px;
-            padding-bottom:15px;
-            line-height: 20px;
-            padding: 10px 15px;
-            display: block;
-        }
-        b{
-            
-            position: relative;
-            text-decoration: none;
-        }
-        .navbar-nav li a{
-            padding-top: 15px;
-            padding-bottom: 15px;
-            line-height: 20px;
-        }
-
-    </style>
+    <title>Document</title>
+    <link href="iconfont/iconfont.css" rel="stylesheet" />
 </head>
+    <style>
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    .navbar-nav{
+        list-style: none;
+    }
+    .dropdown-menu{
+        list-style: none;
+    }
+    a{
+        color: #333;
+        text-decoration: none;
+    }
+    .container-fluid{
+        display: flex;
+        background: #ddd;
+        flex-wrap: wrap;
+        height: 41px;
+       
+    }
+    .navbar-nav{
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap; 
+        
+    }
+    .navbar-header{
+        padding: 10px 30px;
+       
+    }
+    .navbar-nav li{ 
+        padding: 10px 30px;
+    }
+    .navbar-nav li .dropdown-menu li{
+        padding: 5px;
+        line-height: 1.5em;
+        font-size: 14px;
+    }
+   
+    .dropdown-menu{
+        padding: 0;
+        min-width: 140px;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        position: absolute;
+        top: 40px;
+        left: 0 ;
+        display: none;
+    }
+    .dropdown{
+        background: #ccc;
+        position: relative;
+     }
+    /*.dropdown:active .dropdown-menu{
+        display: block;
+    }*/
+    .active{
+        background: #ccc;
+        position: relative;
+    }
+    
+   
+    
+    @media screen and (max-width:876px){
+        .navbar-header{
+        width: 100%;
+    }
+    .height{
+        width: 100%;
+        } 
+        .navbar-nav li{
+        width: 100%;
+    }
+     .dropdown-menu {
+         width: 100%;
+     } 
+    }
+    .divider{
+        border-top: 1px solid #ddd;
+        padding: 0;
+    }
+    </style>
 <body>
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">菜鸟教程</a>
-            </div>
-        </div>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="#">iOS</a></li>
-            <li>
-                <b href="#">SVN</b>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdpwn-toggle" data-toggle="dropdown">
-                    JAVA
-                    <b class="caret"></b>
+     <nav class=" navbar-default" role="navigation">
+        <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">菜鸟教程</a>
+         </div>
+         <div class="height">
+            <ul class="nav navbar-nav">
+             <li class="active"><a href="#">iOS</a></li>
+             <li><a href="#">SVN</a></li>
+             <li class="dropdown">
+                    
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                   Java
+                   <i class="iconfont icon-xiala"></i>  
+                 <b class="caret"></b>
                 </a>
-                <ul class="dropsdown-menu">
-                    <li>
-                        <a href="#">jmeter</a>
-                    </li>
-                    <li>
-                            <a href="#">EJB</a>
-                    </li>
-                    <li>
-                            <a href="#">Jasper Report</a>
-                    </li>
-                    <li class="diver"></li>
-                    <li>
-                            <a href="#">分离的链接</a>
-                    </li>
-                    <li class="diver"></li>
-                    <li>
-                            <a href="#">另一个分离的链接</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+                <ul class="dropdown-menu">
+                    <li><a href="#">jmeter</a></li>
+                    <li><a href="#">EJB</a></li>
+                    <li><a href="#">Jasper Report</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">分离的链接</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">另一个分离的链接</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                </div>
+            </nav>
+
+            <script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+            <script type="text/javascript">
+               $(".dropdown").click(function(){
+                       $(".dropdown-menu") .toggle();
+                        });                                             
+                </script>
+  
 </body>
 </html>
