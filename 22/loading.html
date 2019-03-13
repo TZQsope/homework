@@ -29,10 +29,13 @@
         }
 
         body {
-            background-color: #F5F5F5;
+            background-color: white;
+            height:1000px;
+            margin: 0;
+            padding: 0;
         }
 
-        .circle-loader {
+        .container {
             display: block;
             width: 64px;
             height: 64px;
@@ -45,14 +48,14 @@
             animation: rotate-animation 5s linear infinite;
         }
 
-        .circle-loader .circle {
+        .container .circle {
             animation: move-animation 2.5s linear infinite;
             position: absolute;
             left: 50%;
             top: 50%;
         }
 
-        .circle-loader .circle-line {
+        .container .circle-line {
             width: 64px;
             height: 24px;
             position: absolute;
@@ -61,23 +64,23 @@
             transform-origin: 4px 4px;
         }
 
-        .circle-loader .circle-line:nth-child(1) {
+        .container .circle-line:nth-child(1) {
             transform: rotate(0deg);
         }
 
-        .circle-loader .circle-line:nth-child(2) {
+        .container .circle-line:nth-child(2) {
             transform: rotate(90deg);
         }
 
-        .circle-loader .circle-line:nth-child(3) {
+        .container .circle-line:nth-child(3) {
             transform: rotate(180deg);
         }
 
-        .circle-loader .circle-line:nth-child(4) {
+        .container .circle-line:nth-child(4) {
             transform: rotate(270deg);
         }
 
-        .circle-loader .circle-line .circle:nth-child(1) {
+        .container .circle-line .circle:nth-child(1) {
             width: 8px;
             height: 8px;
             top: 50%;
@@ -88,7 +91,7 @@
             animation-delay: -0.3s;
         }
 
-        .circle-loader .circle-line .circle:nth-child(2) {
+        .container .circle-line .circle:nth-child(2) {
             width: 16px;
             height: 16px;
             top: 50%;
@@ -99,7 +102,7 @@
             animation-delay: -0.6s;
         }
 
-        .circle-loader .circle-line .circle:nth-child(3) {
+        .container .circle-line .circle:nth-child(3) {
             width: 24px;
             height: 24px;
             top: 50%;
@@ -110,19 +113,19 @@
             animation-delay: -0.9s;
         }
 
-        .circle-loader .circle-blue {
+        .container .circle-blue {
             background-color: #1f4e5a;
         }
 
-        .circle-loader .circle-red {
+        .container .circle-red {
             background-color: #ff5955;
         }
 
-        .circle-loader .circle-yellow {
+        .container .circle-yellow {
             background-color: #ffb265;
         }
 
-        .circle-loader .circle-green {
+        .container .circle-green {
             background-color: #00a691;
         }
 
@@ -130,7 +133,7 @@
 </head>
 <body>
 <div class="page">
-    <div class="circle-loader">
+    <div class="container">
         <div class="circle-line">
             <div class="circle circle-blue"></div>
             <div class="circle circle-blue"></div>
