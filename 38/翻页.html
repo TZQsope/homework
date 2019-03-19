@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+   
+    <style>
+        .body{
+            margin: 0;
+        }
+        .banner{
+            background: url(https://work.mafengshe.com/static/imgs/banner.jpg);
+            height: 270px;
+        }
+        .list{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content:left;
+
+        }
+        .item{
+            width: 22%;
+            height: 148px;
+            background: #4ce19c;
+            margin:20px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+       .item .no{
+           background: #20b6d2;
+           width: 70px;
+           height: 70px;
+           line-height: 70px;
+           border-radius: 50%;
+           text-align: center;
+           font-size: 24px;
+           font-weight: 700;
+           position: absolute;
+           top:-10px;
+           left: -10px;
+
+        }
+        .item .title{
+            background: #00474c;
+            position: absolute;
+            bottom: 0;
+            height: 45px;
+           line-height: 45px;
+           left: 0;
+           right: 0;
+           color: white;
+           text-align: center;
+           font-size: 18px;
+        }
+        .item .info{
+            position: absolute;
+            right: 20px;
+            top: 5px;
+            color: white;
+            font-size: 16px;
+             
+        }
+        .info span{
+            margin: 5px;
+        }
+        .item .icon-smiling{
+            font-size:60px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin:auto;
+            height: 60px;
+            width: 60px;
+        }
+        .pager{
+            text-align: center;
+
+        }
+        .pager a{
+            margin: 10px;
+        }
+            </style>
+     <link rel="stylesheet" href="iconfont/iconfont.css">
+</head>
+<body>
+    <div class="banner"></div>
+    <div class="list" id="list">
+       <div class="item">
+          <div class="no">1</div>
+            <div class="title">基本工具使用</div>
+            <div class="info" ><span class="icon iconfont icon-guanzhu">100</span><span class="icon iconfont icon-icon_chakantiezihuifu"> 4</span> 
+                 </div>
+                 <span class="icon iconfont icon-smiling"> </span>
+        </div>
+     
+    </div>
+    <div class="pager">
+        <a href='#'>1</a>
+        <a href='#'>2</a>
+        </div>
+    <script>
+            function createItem(no,title,clickTimes,replyTimes){
+                var dom=document.createElement("div");
+                dom.setAttribute("class","item");
+                var html='<div class="no">'+no+'</div>'+'<div class="title">'+title+'</div>'+
+               '<div class="info"><span class="icon iconfont icon-guanzhu"></span>' +clickTimes+'<span class="icon iconfont icon-icon_huifu-mian"></span>'+
+               replyTimes+'</div>'+' <span class="icon iconfont icon-xiaolian"> </span>'
+               dom.innerHTML=html;
+               return dom;
+            }
+            var data=[];
+            for(var i=0;i<100;i++)
+            {
+                data.push({no:i,title:"标题",clickTimes:10*i,replyTimes:i})
+            }
+
+        
+            function getData(page)
+            {
+              return data.slice(page*12,page*12+12)
+            }
+            var oList=document.getElementById("list");
+            function fillDom(page){
+                while(oList.hasChildNodes())
+                {
+                    oList.removeChild(oList.lastChild);
+                }
+                var data=getData(page);
+                var doms=data.map(function(i){
+                    return createItem(i.no,i.title,i.clickTimes,i.replyTimes)})
+                    doms.forEach(function(i){
+                    oList.appendChild(i)
+                })
+            }
+
+           fillDom(0);
+           var pages=document.querySelectorAll(".pager a")
+           for (let i=0;i<pages.length;i++)
+           {
+               pages[i].addEventListener("click",function(){
+                   fillDom(i);
+               })
+           }
+         
+             
+
+            </script>
+</body>
+
+</html>
