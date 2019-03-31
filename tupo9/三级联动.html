@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/">
+        username: <input type="text" name="username" pattern="^[a-zA-Z_]\w{6,18}$"/>
+        password: <input type="text" id="password" oninput="passwordInput()" pattern="w{6,18}$"/>
+        password repeat: <input type="text" id="password-repeat" oninput="passwordRepeatInput()" pattern="w{6,18}$"/>
+         <input type="submit" />
+</form>
+<script>
+    var password;
+    function passwordInput(){
+        password = document.getElementById("password").value
+    }
+    function passwordRepeatInput(){
+        var input=document.getElementById("password-repeat")
+        if(password != input.value){
+            input.setCustomValidity("Password values do not match.")
+        }else{
+            input.setCustomValidity("")
+        }
+    }
+
+</script>
+</body>
+</html>

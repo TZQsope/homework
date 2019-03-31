@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .goods{
+            display: flex;
+        }
+        .goods .item{
+            height:500px;
+            width: 500px;
+            margin-right: 30px;
+        }
+        .item .image{
+            height: 500px;
+            width:500px;
+            background-size:100% 100%;-moz-background-size:100% 100%
+
+        }
+        .gouwuche{
+            position: fixed;
+            bottom: 0;
+           width: 100%;
+            height: 10%;
+            display: flex;
+        }
+        .g-item{
+            width: 60px;
+            height: 30px;
+            margin-left: 30px;
+            background:black;
+        }
+
+    
+        #image0{
+            background-image: url(https://www.maccosmetics.com.cn/media/export/cms/products/280x320/mac_sku_M31A14_280x320_0.jpg)
+        }
+        #image1{
+            background-image: url(https://www.maccosmetics.com.cn/media/export/cms/products/280x320/mac_sku_MCF316_280x320_0.jpg)
+        }
+
+        </style>
+</head>
+<body>
+     <div class="head">
+         MAC口红
+     </div>
+    <div class="goods">
+        <div class="item"name="mac0">
+            <img class="image"id="image0"></img>
+            <li id="price0">￥172</li>
+            <button class="add">购买25色号</button>
+            <button class="del">从购物车删除</button>
+            <button class="shou">收藏</button>
+        </div>
+        <div class="item"name="mac1">
+            <img class="image"id="image1"></img>
+            <li id="price0">￥172</li>
+            <button class="add">购买35色号</button>
+            <button class="del">从购物车删除</button>
+            <button class="shou">收藏</button>
+        </div>
+
+    </div>
+    <div style="height: 1000px;"></div>
+
+    <div class="gouwuche"id="gouwuche">
+  
+                    
+                </div>
+    </div>
+
+
+
+
+     <script>
+       
+      var btns=  document.querySelectorAll(".goods>.item>.add");
+      var dels=  document.querySelectorAll(".goods>.item>.del");
+      var mGouwuche=document.getElementById("gouwuche");
+     
+      function createItem(i)
+      {
+        var dom=document.createElement("div");
+                dom.setAttribute("class","g-item");
+                dom.setAttribute("id","item"+i);
+                return dom;
+      }
+      function addItem(){
+
+      }
+  
+
+         for(let i=0;i<btns.length;i++)
+         {
+             btns[i].addEventListener("click",function(){
+               
+             var count=1;
+                 var a= document.cookie.split(";").map(function(x){return x.replace(/(^\s*)|(\s*$)/g, "").split("=");
+         }).filter(function(x){return x[0]=="mac"+i})
+         
+                  if(a.length!=0)
+                  {
+                     count=parseInt(a[0][1])+1;
+                     document.cookie=a[0][0]+"="+count;
+                     var item=document.getElementById("item"+i);
+                     item.innerHTML=btns[i].parentElement.getAttribute("name")+":"+count;
+                  }
+                 else 
+                  {
+                    var item=mGouwuche.appendChild(createItem(i));
+                 item.innerHTML=item.innerHTML+btns[i].parentElement.getAttribute("name");
+                    document.cookie=item.innerHTML+"="+count;
+                  }      
+
+             })
+         }
+
+
+
+    for(let i=0;i<dels.length;i++)
+         {
+             dels[i].addEventListener("click",function(){
+               
+             var count=1;
+                 var a= document.cookie.split(";").map(function(x){return x.replace(/(^\s*)|(\s*$)/g, "").split("=");
+         }).filter(function(x){return x[0]=="mac"+i})
+         
+                  if(a.length!=0)
+                  {
+                      if(parseInt(a[0][1])>1)
+                     {count=parseInt(a[0][1])-1;
+                     document.cookie=a[0][0]+"="+count;
+                     var item=document.getElementById("item"+i);
+                     item.innerHTML=btns[i].parentElement.getAttribute("name")+":"+count;
+                     }
+                     else{
+                        var item=document.getElementById("item"+i);
+                        item.remove();
+                        document.cookie = a[0][0]+"=; expires=Thu, 01 Jan 1970 00:00:00 GMT"
+                     }
+                  }
+                 else 
+                  {
+                  
+                  }
+                
+                  
+                  
+             })
+         }
+
+
+
+
+
+
+        var buystore= document.cookie.split(";").map(function(x){return x.replace(/(^\s*)|(\s*$)/g, "").split("=");
+         }).filter(function(x){return x[0].substring(0,2)=="aj"})
+         buystore.sort(function(x, y){
+  return x[0].localeCompare(y[0]);
+});
+
+         if(buystore.length>=1){
+             for(let i=0;i<buystore.length;i++){
+            item=mGouwuche.appendChild(createItem(i));
+             
+            item.innerHTML=buystore[i][0]+":"+buystore[i][1]}
+         }
+          
+         
+         </script>
+</body>
+</html>

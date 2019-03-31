@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .head{
+            height: 100px;
+            padding: 30px;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            background: yellow;
+            margin-bottom: 30px;
+        }
+        .goods{
+            display: flex;
+
+        }
+        .goods .item{
+            height:270px;
+            width: 250px;
+            margin-right: 30px;
+        }
+        .item .image{
+            height: 250px;
+            width:250px;
+            background-size:100% 100%;-moz-background-size:100% 100%
+
+        }
+        .gouwuche{
+            position: fixed;
+            bottom: 0;
+           width: 100%;
+            height: 10%;
+            background: yellow;
+            display: flex;
+
+        }
+        .g-item{
+            width: 60px;
+            height: 30px;
+            background: red;
+            margin-left: 30px;
+
+        }
+
+    
+        #image0{
+            background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551605903448&di=dc6243f20adbed95d7d062ec0fb5fd58&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201512%2F20%2F20151220113313_zYCxk.jpeg)
+        }
+        #image1{
+            background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551606579805&di=d9f65856766a90977ef7c8f57c75ff4f&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201503%2F19%2F20150319151044_FkKC4.png)
+        }
+        #image2{
+            background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551606579804&di=0b2bd3c849656bf3691b9cbae151e71d&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201512%2F19%2F20151219105729_xntFM.jpeg)
+        }
+        #image3{
+            background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551606579802&di=abe66adfe21185dec1ac72ba827cd6b0&imgtype=0&src=http%3A%2F%2Fimg10.360buyimg.com%2Fn12%2Fjfs%2Ft262%2F105%2F736124774%2F77979%2F381b3e8%2F53f07219N3d62f218.jpg%2521q70.jpg)
+        }
+        </style>
+</head>
+<body>
+     <div class="head">
+         男鞋专区
+     </div>
+    <div class="goods">
+        <div class="item"name="aj0"><img class="image"id="image0"></img><button class="add">添加到购物车</button><button class="del">从购物车删除</button></div>
+        <div class="item"name="aj1"><img class="image"id="image1"></img><button class="add">添加到购物车</button><button class="del">从购物车删除</button></div>
+        <div class="item"name="aj2"><img class="image"id="image2"></img><button class="add">添加到购物车</button><button class="del">从购物车删除</button></div>
+        <div class="item"name="aj3"><img class="image"id="image3"></img><button class="add">添加到购物车</button><button class="del">从购物车删除</button></div>
+  
+    </div>
+    <div style="height: 1000px;"></div>
+
+    <div class="gouwuche"id="gouwuche">
+  
+                    
+                </div>
+    </div>
+
+
+
+
+     <script>
+       
+      var btns=  document.querySelectorAll(".goods>.item>.add");
+      var dels=  document.querySelectorAll(".goods>.item>.del");
+      var mGouwuche=document.getElementById("gouwuche");
+     
+      function createItem(i)
+      {
+        var dom=document.createElement("div");
+                dom.setAttribute("class","g-item");
+                dom.setAttribute("id","item"+i);
+                return dom;
+      }
+      function addItem(){
+
+      }
+  
+
+
+/*************************************给添加键添加点击事件*************************************/
+         for(let i=0;i<btns.length;i++)
+         {
+             btns[i].addEventListener("click",function(){
+               
+             var count=1;
+                 var a= document.cookie.split(";").map(function(x){return x.replace(/(^\s*)|(\s*$)/g, "").split("=");
+         }).filter(function(x){return x[0]=="aj"+i})
+         
+                  if(a.length!=0)
+                  {
+                     count=parseInt(a[0][1])+1;
+                     document.cookie=a[0][0]+"="+count;
+                     var item=document.getElementById("item"+i);
+                     item.innerHTML=btns[i].parentElement.getAttribute("name")+":"+count;
+                  }
+                 else 
+                  {
+                    var item=mGouwuche.appendChild(createItem(i));
+                 item.innerHTML=item.innerHTML+btns[i].parentElement.getAttribute("name");
+                    document.cookie=item.innerHTML+"="+count;
+                  }
+                
+                  
+                  
+             })
+         }
+/****************************给删除键添加点击事件*************************************************/
+
+
+    for(let i=0;i<dels.length;i++)
+         {
+             dels[i].addEventListener("click",function(){
+               
+             var count=1;
+                 var a= document.cookie.split(";").map(function(x){return x.replace(/(^\s*)|(\s*$)/g, "").split("=");
+         }).filter(function(x){return x[0]=="aj"+i})
+         
+                  if(a.length!=0)
+                  {
+                      if(parseInt(a[0][1])>1)
+                     {count=parseInt(a[0][1])-1;
+                     document.cookie=a[0][0]+"="+count;
+                     var item=document.getElementById("item"+i);
+                     item.innerHTML=btns[i].parentElement.getAttribute("name")+":"+count;
+                     }
+                     else{
+                        var item=document.getElementById("item"+i);
+                        item.remove();
+                        document.cookie = a[0][0]+"=; expires=Thu, 01 Jan 1970 00:00:00 GMT"
+                     }
+                  }
+                 else 
+                  {
+                  
+                  }
+                
+                  
+                  
+             })
+         }
+
+
+
+
+
+
+        var buystore= document.cookie.split(";").map(function(x){return x.replace(/(^\s*)|(\s*$)/g, "").split("=");
+         }).filter(function(x){return x[0].substring(0,2)=="aj"})
+         buystore.sort(function(x, y){
+  return x[0].localeCompare(y[0]);
+});
+
+         if(buystore.length>=1){
+             for(let i=0;i<buystore.length;i++){
+            item=mGouwuche.appendChild(createItem(i));
+             
+            item.innerHTML=buystore[i][0]+":"+buystore[i][1]}
+         }
+          
+         
+         </script>
+</body>
+</html>
+ 
